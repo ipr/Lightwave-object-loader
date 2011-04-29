@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LWO_reader", "LWO_reader.vcxproj", "{C4E753C9-4FC0-48AE-9217-5618A86A1C32}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C4E753C9-4FC0-48AE-9217-5618A86A1C32}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C4E753C9-4FC0-48AE-9217-5618A86A1C32}.Debug|Win32.Build.0 = Debug|Win32
+		{C4E753C9-4FC0-48AE-9217-5618A86A1C32}.Release|Win32.ActiveCfg = Release|Win32
+		{C4E753C9-4FC0-48AE-9217-5618A86A1C32}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
