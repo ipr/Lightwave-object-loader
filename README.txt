@@ -1,4 +1,3 @@
-
 Lightwave 3D-mesh object format loading and parsing in C++.
 
 Author: Ilkka Prusi
@@ -12,7 +11,7 @@ Description:
 Classes for loading 3D-mesh objects in Lightwave format to be used in games and such.
 
 Started this project around 2004-2005 but has been waiting for time to finish
-most of that time..
+most of that time.. Started converting to use C++0x features but not finished.
 
 Current Lightwave-SDK describes object format for LW 6.5 and newer.
 Support for older formats (pre-6.0) is at least partially working.
