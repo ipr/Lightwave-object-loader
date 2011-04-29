@@ -11,10 +11,8 @@
 #ifndef _LWOREADER_H_
 #define _LWOREADER_H_
 
-//TODO: check these..
-//needs VC2010 ?
-//#include <stdint.h>
-
+// use ISO-standard typedefs when available
+#include <stdint.h>
 
 #include "LwoTags.h" // LWO tag-ID definitions
 
@@ -25,9 +23,6 @@
 typedef unsigned char      BYTE;
 #endif
 
-#ifndef WORD
-typedef unsigned short      WORD;
-#endif
 
 // use 1-byte alignment when reading
 // (instead of VC default)
@@ -36,15 +31,15 @@ typedef unsigned short      WORD;
 // IFF chunk headers ("root" headers)
 struct tChunkHeader
 {
-	unsigned int m_uiType;
-	unsigned int m_uiSize;
+	unsigned int m_uiType; // uint32_t
+	unsigned int m_uiSize; // uint32_t
 };
 
 // sub-chunk headers (below "root" headers")
 struct tSubChunkHeader
 {
-	unsigned int m_uiType;
-	unsigned short m_usSize;
+	unsigned int m_uiType; // uint32_t
+	unsigned short m_usSize; // uint16_t
 };
 #pragma pack()
 
