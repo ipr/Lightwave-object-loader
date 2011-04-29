@@ -13,6 +13,7 @@
 
 /////// protected methods
 
+// make tag-ID from file
 unsigned int CLwoReader::MakeTag(const char *buf)
 {
 	return (
@@ -22,18 +23,14 @@ unsigned int CLwoReader::MakeTag(const char *buf)
 		| (unsigned long) (buf[3]));
 }
 
+// byteswap 2 (short)
 unsigned short CLwoReader::BSwap2s(const unsigned short *buf)
 {
 	unsigned short tmp = (*buf);
 	return (((tmp >> 8)) | (tmp << 8));
-
-	/*
-	tmp =  (*buf & 0x00ff);
-	tmp = ((*buf & 0xff00) >> 0x08) | (tmp << 0x08);
-	return tmp;
-	*/
 }
 
+// byteswap 4 (int)
 unsigned int CLwoReader::BSwap4i(const unsigned int *buf)
 {
 	unsigned int tmp = (*buf);
@@ -41,17 +38,9 @@ unsigned int CLwoReader::BSwap4i(const unsigned int *buf)
 			((tmp & 0x000000FF) << 24) + ((tmp & 0x0000FF00) <<8) +
 			((tmp & 0x00FF0000) >> 8) + ((tmp & 0xFF000000) >>24)
 			);
-
-	/* bugged
-	tmp =  (*buf & 0x000000ff);
-	tmp = ((*buf & 0x0000ff00) >> 0x08) | (tmp << 0x08);
-	tmp = ((*buf & 0x00ff0000) >> 0x10) | (tmp << 0x08);
-	tmp = ((*buf & 0xff000000) >> 0x18) | (tmp << 0x08);
-
-	return tmp;
-	*/
 }
 
+// byteswap 4: float special case (see comments)
 float CLwoReader::BSwapF(const float fVal)
 {
 	float fTmp = fVal;
@@ -183,15 +172,7 @@ bool CLwoReader::HandleFileHeader(const char *pLwoBuf, const unsigned long ulFil
 
 unsigned int CLwoReader::GetChunkType(const char *pLwoBuf, unsigned int &uiChunkSize)
 {
-	// TODO: alternate
-	/*
-	tChunkHeader *pHeader = (tChunkHeader*)pLwoBuf;
-	uiChunkSize = BSwap4i(pHeader->m_uiChunkSize);
-	return pHeader->m_uiChunkType;
-	*/
-
 	char *pBufPos = (char*)pLwoBuf;
-
 	unsigned int uiType = MakeTag(pBufPos);
 
 	// pos of chunk size
@@ -206,7 +187,6 @@ unsigned int CLwoReader::GetChunkType(const char *pLwoBuf, unsigned int &uiChunk
 unsigned int CLwoReader::GetSubChunkType(const char *pLwoBuf, unsigned short &usChunkSize)
 {
 	char *pBufPos = (char*)pLwoBuf;
-
 	unsigned int uiType = MakeTag(pBufPos);
 
 	// pos of chunk size
