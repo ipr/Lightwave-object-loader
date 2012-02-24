@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.8)
 project (LWReader)
-set (ADis_VERSION_MAJOR 1)
-set (ADis_VERSION_MINOR 0)
+set (LWReader_VERSION_MAJOR 1)
+set (LWReader_VERSION_MINOR 0)
 
 set (LWReader_SOURCES
  LwoObjectData.cpp LwoReader.cpp MemFile.cpp main.cpp)
