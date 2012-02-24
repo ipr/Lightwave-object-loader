@@ -10,6 +10,9 @@
 
 #include "LwoReader.h"
 
+// abs(), need explicit include for GCC
+#include <cmath>
+
 
 /////// protected methods
 
