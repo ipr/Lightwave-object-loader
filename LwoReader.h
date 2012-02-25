@@ -20,7 +20,7 @@
 #include "LwoObjectData.h" // object information structure
 
 #ifndef BYTE
-typedef unsigned char      BYTE;
+typedef uint8_t  BYTE;
 #endif
 
 
@@ -63,8 +63,8 @@ private:
 
 protected:
 
-	// tagi-id:n tekeminen char-stringistä
-	// esim. FORM-stringistä
+	// tag-ID from data/string
+	// (e.g. "FORM")
 	inline unsigned int MakeTag(const char *buf);
 
 	// byteswap bigendian<->little-endian

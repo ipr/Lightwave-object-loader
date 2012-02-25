@@ -57,6 +57,8 @@ float CLwoReader::BSwapF(const float fVal)
 	return fTmp;
 }
 
+// get variable-length index-value from chunk-position,
+// may be 2 or 4 byte integer
 unsigned int CLwoReader::GetVarlenIX(const char *pChunk, int &iIxSize)
 {
 	// temp for value from buffer
@@ -126,7 +128,7 @@ bool CLwoReader::HandleFileHeader(const char *pLwoBuf, const unsigned long ulFil
 	unsigned int uiType = 0; // bufferi chunk-tyyppitagille
 
 	// read IFF-header tag: should be FORM
-	uiType = MakeTag(pBufPos); // tehdään tagi chunkin headerista (ekat neljä byteä bufferissa)
+	uiType = MakeTag(pBufPos); // make tag from header of chunk (4 bytes)
 	if (uiType != ID_FORM)
 	{
 		// missing IFF-header/unsupport format
@@ -134,12 +136,10 @@ bool CLwoReader::HandleFileHeader(const char *pLwoBuf, const unsigned long ulFil
 		return false;
 	}
 
-	// siirry chunkin kokoon
-	pBufPos = (pBufPos +4);
+	pBufPos = (pBufPos +4); // next: chunk size
 
-	// chunkin koko: filukoko-8 (348->340)
-	// LWO2:ssa luvut aina bigendianisessa muodossa
-	// byteswap bigendian->little-endian
+	// chunk size: filesize-8 (348->340),
+	// always big endian data
 	unsigned int uiLWOSize = 0;
 	uiLWOSize = BSwap4i((unsigned int*)pBufPos);
 	if (uiLWOSize <= 0)
